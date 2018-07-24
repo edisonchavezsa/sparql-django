@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=windows-1252">
+<title>UTPL</title> 
+<style>   
+body{background:#b7e5ff; 
+font-size:20px; 
+color:black; 
+padding:20px; 
+border:6px solid white;
+} 
+textarea {
+  width: 300px;
+  height: 150px;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+h1{color:red;}
+</style>  
+</head> 
+
+<body> 
+<h1>Procesamiento de texto </h1> 
+<h3>Ingrese el contenido a ser procesado. </h3>   
+<img src="http://www-igm.univ-mlv.fr/~dr/XPOSE2009/Le%20Web%203.0/ressources/dbpediaLogo.png" alt="Esta es mi casa">  
+<br>  
+
+<form method="post" action="/prueba">
+      {% csrf_token %} 
+      <textarea name="text_box" placeholder="Escriba aqui el contenido"></textarea>
+      <input type="image" src="https://www.shareicon.net/data/128x128/2015/10/03/110917_search_512x512.png"></input>
+</form>
+ 
+<table summary="no_orderDate">
+<tr><th>Recurso</th><th>URI</th>
+{% for resultad in resultados %}
+        <tr><td>{{ resultad.0 }}</td><td> <a href="{{resultad.1}}">{{ resultad.1 }}</a></td></tr>
+{% endfor %}
+</table>
+
+</body>  
+</html>
